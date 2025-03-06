@@ -10,3 +10,6 @@ class Book(models.Model):
         verbose_name_plural = 'Книги'
         ordering = ['-name', '-author']
 
+    def __str__(self):
+        return self.author + ' — ' + self.name
+

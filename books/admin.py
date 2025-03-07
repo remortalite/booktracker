@@ -12,7 +12,7 @@ class BookAdmin(admin.ModelAdmin):
 class RecordAdmin(admin.ModelAdmin):
     list_display = ['id', 'book', 'status', 'created_at', 'updated_at']
     list_display_links = ['id']
-    search_fields = ['book']
+    search_fields = ['book__name', 'book__author']
 
 
 admin.site.register(Book, BookAdmin)

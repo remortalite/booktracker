@@ -43,8 +43,13 @@ class BookCreateView(View):
 class BookUpdateView(View):
     def get(self, request, book_id):
         book = Book.objects.get(id=book_id)
-        form = BookForm(initial=book)
+        form = BookForm(instance=book)
         return render(request, 'books/update.html', {'form': form})
 
-    def post(self, request):
-        pass
+    def post(self, request, book_id):
+        book = Book.objects.get(id=book_id)
+        form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse_lazy('books_list'))
+        return render(request, 'books/update.html', {'form': form})

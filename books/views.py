@@ -59,6 +59,9 @@ class BookDeleteView(View):
 
     def post(self, request, book_id):
         book = Book.objects.get(id=book_id)
+        if book.record_set.exists():
+            # TODO
+            return HttpResponse('<h1>Невозможно удалить книгу, пока '
+                                'существуют связанные с ней записи!</h1>')
         book.delete()
-        # print flash message
         return redirect(reverse_lazy('books_list'))

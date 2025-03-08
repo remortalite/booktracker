@@ -12,3 +12,7 @@ class Book(models.Model):
 
     def __str__(self):
         return self.author + ' — ' + self.name
+
+    @property
+    def full_name(self):
+        return f'{self.author} — {self.name}'

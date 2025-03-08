@@ -4,7 +4,7 @@
 <h1>Records:</h1>
 <ul>
     {% for record in records %}
-    <li><a href="">{{ record.id }} {{ record.book.name }}</a></li>
+    <li><a href="">{{ record.id }} {{ record.book.full_name }}</a></li>
     {% endfor %}
 </ul>
 <a href="">Создать запись</a>

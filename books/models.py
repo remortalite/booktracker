@@ -20,12 +20,16 @@ class Record(models.Model):
         READING = 'reading', 'Читаю'
         FINISHED = 'finished', 'Закончено'
         TO_READ = 'to_read', 'Прочитать'
-    book = models.ForeignKey(Book, on_delete=models.PROTECT)
+    book = models.ForeignKey(Book, on_delete=models.PROTECT,
+                             verbose_name='Книга')
     status = models.CharField(max_length=16,
                               choices=Status.choices,
-                              default=Status.TO_READ)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+                              default=Status.TO_READ,
+                              verbose_name='Статус')
+    created_at = models.DateTimeField(auto_now_add=True,
+                                      verbose_name='Создано')
+    updated_at = models.DateTimeField(auto_now=True,
+                                      verbose_name='Изменено')
 
     class Meta:
         verbose_name = 'Запись'

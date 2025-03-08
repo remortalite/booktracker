@@ -50,3 +50,15 @@ class BookUpdateView(View):
             form.save()
             return redirect(reverse_lazy('books_list'))
         return render(request, 'books/update.html', {'form': form})
+
+
+class BookDeleteView(View):
+    def get(self, request, book_id):
+        book = Book.objects.get(id=book_id)
+        return render(request, 'books/delete.html', {'book': book})
+
+    def post(self, request, book_id):
+        book = Book.objects.get(id=book_id)
+        book.delete()
+        # print flash message
+        return redirect(reverse_lazy('books_list'))

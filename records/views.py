@@ -1,5 +1,5 @@
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 from .models import Record
@@ -23,4 +23,11 @@ class RecordUpdateView(UpdateView):
     form_class = RecordForm
     success_url = reverse_lazy('record_list')
     template_name = 'records/form.html'
+    pk_url_kwarg = 'record_id'
+
+
+class RecordDeleteView(DeleteView):
+    model = Record
+    success_url = reverse_lazy('record_list')
+    template_name = 'records/confirm_delete.html'
     pk_url_kwarg = 'record_id'

@@ -7,5 +7,5 @@
     <li><a href="">{{ record.id }} {{ record.book.full_name }}</a></li>
     {% endfor %}
 </ul>
-<a href="">Создать запись</a>
+<a href="{% url 'record_create' %}">Создать запись</a>
 {% endblock content %}

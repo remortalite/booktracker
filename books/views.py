@@ -38,3 +38,13 @@ class BookCreateView(View):
             book.save()
             return redirect(reverse_lazy('books_list'))
         return render(request, 'books/create.html', {'form': form})
+
+
+class BookUpdateView(View):
+    def get(self, request, book_id):
+        book = Book.objects.get(id=book_id)
+        form = BookForm(initial=book)
+        return render(request, 'books/update.html', {'form': form})
+
+    def post(self, request):
+        pass

@@ -12,4 +12,8 @@
         <td>{{ book.author }}</td>
     </tr>
 </table>
+<a href="{% url 'book_update' book.id %}">Редактировать</a>
+<a href="{% url 'book_delete' book.id %}">Удалить</a>
+<a href="{% url 'books_list' %}"><i>Вернуться к списку книг</i></a>
+
 {% endblock content %}

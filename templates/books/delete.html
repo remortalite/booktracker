@@ -7,4 +7,6 @@
     {% csrf_token %}
     <input type="submit" value="Удалить">
 </form>
+<a href="{% url 'books_list' %}"><i>Вернуться к списку книг</i></a>
+
 {% endblock content %}

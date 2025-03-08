@@ -10,7 +10,7 @@ class IndexPageView(View):
         return HttpResponse('<h1>Hello, world!</h1>')
 
 
-class BooksView(View):
+class BookListView(View):
     def get(self, request):
         books = Book.objects.all()
         return render(request, 'books/list.html', {'books': books})

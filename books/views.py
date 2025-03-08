@@ -32,10 +32,7 @@ class BookCreateView(View):
     def post(self, request):
         form = BookForm(request.POST)
         if form.is_valid():
-            book = Book()
-            book.author = form.cleaned_data['author']
-            book.name = form.cleaned_data['name']
-            book.save()
+            form.save()
             return redirect(reverse_lazy('books_list'))
         return render(request, 'books/create.html', {'form': form})
 

@@ -14,3 +14,9 @@ class BooksView(View):
     def get(self, request):
         books = Book.objects.all()
         return render(request, 'books/list.html', {'books': books})
+
+
+class BookDetailView(View):
+    def get(self, request, book_id):
+        book = Book.objects.get(id=book_id)
+        return render(request, 'books/detail.html', {'book': book})

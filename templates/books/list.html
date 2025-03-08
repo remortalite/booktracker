@@ -4,7 +4,7 @@
 <h1>Books:</h1>
 <ul>
     {% for book in books %}
-    <li>{{ book.author }} -- {{ book.name }}</li>
+    <li><a href="{% url 'book_detail' book.id %}">{{ book.author }} -- {{ book.name }}</a></li>
     {% endfor %}
 </ul>
 {% endblock content %}

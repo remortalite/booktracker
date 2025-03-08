@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.views import View
 from django.http import HttpResponse
 
 from .models import Book
+from .forms import BookForm
 
 
 class IndexPageView(View):
@@ -20,3 +22,19 @@ class BookDetailView(View):
     def get(self, request, book_id):
         book = Book.objects.get(id=book_id)
         return render(request, 'books/detail.html', {'book': book})
+
+
+class BookCreateView(View):
+    def get(self, request):
+        form = BookForm()
+        return render(request, 'books/create.html', {'form': form})
+
+    def post(self, request):
+        form = BookForm(request.POST)
+        if form.is_valid():
+            book = Book()
+            book.author = form.cleaned_data['author']
+            book.name = form.cleaned_data['name']
+            book.save()
+            return redirect(reverse_lazy('books_list'))
+        return render(request, 'books/create.html', {'form': form})

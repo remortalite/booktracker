@@ -1,0 +1,12 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<h1>Удалить запись</h1>
+<p>Вы уверены, что хотите удалить запись о книге {{ record.book.full_name }}?</p>
+<form method="post">
+    {% csrf_token %}
+    <input type="submit" value="Удалить">
+</form>
+<a href="{% url 'record_list' %}"><i>Вернуться к списку записей</i></a>
+
+{% endblock content %}

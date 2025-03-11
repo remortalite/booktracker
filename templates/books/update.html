@@ -1,0 +1,12 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<h1>Редактировать книгу</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Обновить">
+</form>
+<a href="{% url 'books_list' %}"><i>Вернуться к списку книг</i></a>
+
+{% endblock content %}

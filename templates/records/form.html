@@ -1,0 +1,11 @@
+{% extends 'layout/base.html' %}
+
+{% block header %}{% endblock header %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Отправить">
+</form>
+<a href="{% url 'record_list' %}"><i>Вернуться к списку записей</i></a>
+{% endblock content %}

@@ -1,0 +1,31 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<h1>{{ record.name }}</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <td>{{ record.id }}</td>
+    </tr>
+    <tr>
+        <th>Книга</th>
+        <td>{{ record.book.full_name }}</td>
+    </tr>
+    <tr>
+        <th>Статус</th>
+        <td>{{ record.status }}</td>
+    </tr>
+    <tr>
+        <th>Создано</th>
+        <td>{{ record.created_at }}</td>
+    </tr>
+    <tr>
+        <th>Статус</th>
+        <td>{{ record.updated_at }}</td>
+    </tr>
+</table>
+<a href="{% url 'record_update' record.id %}">Редактировать</a>
+<a href="{% url 'record_delete' record.id %}">Удалить</a>
+<a href="{% url 'record_list' %}"><i>Вернуться к списку записей</i></a>
+
+{% endblock content %}

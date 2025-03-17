@@ -1,7 +1,7 @@
 {% extends 'layout/base.html' %}
 
 {% block content %}
-<h1>Books:</h1>
+<h1 class="h1">Books:</h1>
 <ul>
     {% for book in books %}
     <li><a href="{% url 'book_detail' book.id %}">{{ book.author }} -- {{ book.name }}</a></li>

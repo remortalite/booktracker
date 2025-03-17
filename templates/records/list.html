@@ -1,7 +1,7 @@
 {% extends 'layout/base.html' %}
 
 {% block content %}
-<h1>Records:</h1>
+<h1 class="h1">Records:</h1>
 <ul>
     {% for record in records %}
     <li><a href="{% url 'record_detail' record.id %}">{{ record.id }} {{ record.book.full_name }}</a></li>

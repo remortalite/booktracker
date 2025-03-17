@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
 from django.http import HttpResponse
@@ -20,7 +20,7 @@ class BookListView(View):
 
 class BookDetailView(View):
     def get(self, request, book_id):
-        book = Book.objects.get(id=book_id)
+        book = get_object_or_404(Book, id=book_id)
         return render(request, 'books/detail.html', {'book': book})
 
 
@@ -39,12 +39,12 @@ class BookCreateView(View):
 
 class BookUpdateView(View):
     def get(self, request, book_id):
-        book = Book.objects.get(id=book_id)
+        book = get_object_or_404(Book, id=book_id)
         form = BookForm(instance=book)
         return render(request, 'books/update.html', {'form': form})
 
     def post(self, request, book_id):
-        book = Book.objects.get(id=book_id)
+        book = get_object_or_404(Book, id=book_id)
         form = BookForm(request.POST, instance=book)
         if form.is_valid():
             form.save()
@@ -54,11 +54,11 @@ class BookUpdateView(View):
 
 class BookDeleteView(View):
     def get(self, request, book_id):
-        book = Book.objects.get(id=book_id)
+        book = get_object_or_404(Book, id=book_id)
         return render(request, 'books/delete.html', {'book': book})
 
     def post(self, request, book_id):
-        book = Book.objects.get(id=book_id)
+        book = get_object_or_404(Book, id=book_id)
         if book.record_set.exists():
             # TODO
             return HttpResponse('<h1>Невозможно удалить книгу, пока '

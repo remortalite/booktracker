@@ -9,7 +9,7 @@ from .forms import BookForm
 
 class IndexPageView(View):
     def get(self, request):
-        return HttpResponse('<h1>Book Tracker</h1>\n<a href="list">Список</a>')
+        return render(request, 'index.html')
 
 
 class BookListView(View):

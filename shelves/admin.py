@@ -1,3 +1,12 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Shelf
+
+
+class ShelfAdmin(admin.ModelAdmin):
+    list_display = ['name', 'user']
+    list_display_links = ['name']
+    search_fields = ['name', 'book', 'user']
+
+
+admin.site.register(Shelf, ShelfAdmin)

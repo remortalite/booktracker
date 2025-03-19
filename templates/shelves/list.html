@@ -7,5 +7,5 @@
     <li><a href="{% url 'shelf_detail' shelf.id %}">{{ shelf.name }}</a></li>
     {% endfor %}
 </ul>
-<a href="">Создать полку</a>
+<a href="{% url 'shelf_create' %}">Создать полку</a>
 {% endblock content %}

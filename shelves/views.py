@@ -1,4 +1,6 @@
-from django.shortcuts import render, get_list_or_404, get_object_or_404
+from django.shortcuts import (render, redirect,
+                              get_list_or_404, get_object_or_404)
+from django.urls import reverse_lazy
 
 from .forms import ShelfForm
 from .models import Shelf
@@ -19,4 +21,10 @@ def shelf_detail_view(request, shelf_id):
 def shelf_create_view(request):
     if request.method == 'GET':
         form = ShelfForm()
+        return render(request, 'shelves/form.html', {'form': form})
+    elif request.method == 'POST':
+        form = ShelfForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse_lazy('shelf_list'))
         return render(request, 'shelves/form.html', {'form': form})

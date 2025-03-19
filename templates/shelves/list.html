@@ -1,0 +1,11 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<h1>Shelves:</h1>
+<ul>
+    {% for shelf in shelves %}
+    <li><a href="{% url 'shelf_detail' shelf.id %}">{{ shelf.name }}</a></li>
+    {% endfor %}
+</ul>
+<a href="">Создать полку</a>
+{% endblock content %}

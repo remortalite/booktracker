@@ -1,3 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404, get_object_or_404
 
-# Create your views here.
+from .models import Shelf
+
+
+def shelf_list_view(request):
+    if request.method == 'GET':
+        shelves = get_list_or_404(Shelf)
+        return render(request, 'shelves/list.html', {'shelves': shelves})
+
+
+def shelf_detail_view(request, shelf_id):
+    if request.method == 'GET':
+        shelf = get_object_or_404(Shelf, id=shelf_id)
+        return render(request, 'shelves/detail.html', {'shelf': shelf})

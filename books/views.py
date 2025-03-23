@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
-from django.http import HttpResponse
+from django.contrib import messages
 
 from .models import Book
 from .forms import BookForm
@@ -9,7 +9,7 @@ from .forms import BookForm
 
 class IndexPageView(View):
     def get(self, request):
-        return HttpResponse('<h1>Book Tracker</h1>\n<a href="list">Список</a>')
+        return render(request, 'index.html')
 
 
 class BookListView(View):
@@ -60,8 +60,10 @@ class BookDeleteView(View):
     def post(self, request, book_id):
         book = get_object_or_404(Book, id=book_id)
         if book.record_set.exists():
-            # TODO
-            return HttpResponse('<h1>Невозможно удалить книгу, пока '
-                                'существуют связанные с ней записи!</h1>')
+            messages.error(request, 'Невозможно удалить книгу, пока '
+                                    'существуют связанные с ней записи!')
+            return render(request, 'books/delete.html', {'book': book},
+                          status=409)
         book.delete()
+        messages.success(request, 'Книга успешно удалена!')
         return redirect(reverse_lazy('books_list'))

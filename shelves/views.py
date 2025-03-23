@@ -28,3 +28,16 @@ def shelf_create_view(request):
             form.save()
             return redirect(reverse_lazy('shelf_list'))
         return render(request, 'shelves/form.html', {'form': form})
+
+
+def shelf_update_view(request, shelf_id):
+    shelf = get_object_or_404(Shelf, id=shelf_id)
+    if request.method == 'GET':
+        form = ShelfForm(instance=shelf)
+        return render(request, 'shelves/form.html', {'form': form})
+    elif request.method == 'POST':
+        form = ShelfForm(request.POST, instance=shelf)
+        if form.is_valid():
+            form.save()
+            return redirect('shelf_list')
+        return render(request, 'shelves/form.html', {'form': form})

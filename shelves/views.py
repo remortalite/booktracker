@@ -49,5 +49,6 @@ def shelf_delete_view(request, shelf_id):
     if request.method == 'POST':
         shelf.delete()
         messages.info(request, 'Полка успешно удалена')
-    messages.error(request, 'Ошибка удаления полки')
+    else:
+        messages.error(request, 'Ошибка удаления полки')
     return redirect('shelf_list')

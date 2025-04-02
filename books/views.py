@@ -5,6 +5,7 @@ from django.contrib import messages
 
 from .models import Book
 from .forms import BookForm
+from shelves.models import Shelf
 
 
 class IndexPageView(View):
@@ -32,7 +33,9 @@ class BookCreateView(View):
     def post(self, request):
         form = BookForm(request.POST)
         if form.is_valid():
-            form.save()
+            obj = form.save()
+            shelf = get_object_or_404(Shelf, pk=form.cleaned_data['shelf'].pk)
+            shelf.books.add(obj)
             return redirect(reverse_lazy('books_list'))
         return render(request, 'books/create.html', {'form': form})
 
@@ -47,7 +50,9 @@ class BookUpdateView(View):
         book = get_object_or_404(Book, id=book_id)
         form = BookForm(request.POST, instance=book)
         if form.is_valid():
-            form.save()
+            obj = form.save(commit=False)
+            obj.shelves.set([form.cleaned_data['shelf']])
+            obj.save()
             return redirect(reverse_lazy('books_list'))
         return render(request, 'books/update.html', {'form': form})
 

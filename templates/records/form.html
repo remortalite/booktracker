@@ -1,10 +1,12 @@
 {% extends 'layout/base.html' %}
 
+{% load django_bootstrap5 %}
+
 {% block header %}{% endblock header %}
 {% block content %}
 <form method="post">
     {% csrf_token %}
-    {{ form }}
+    {% bootstrap_form form %}
     <input class="btn btn-primary" type="submit" value="Отправить">
 </form>
 <a href="{% url 'record_list' %}"><i>Вернуться к списку записей</i></a>

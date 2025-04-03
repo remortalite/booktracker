@@ -1,10 +1,12 @@
 {% extends 'layout/base.html' %}
 
+{% load django_bootstrap5 %}
+
 {% block content %}
 <h1 class="h1">Редактировать книгу</h1>
 <form method="post">
     {% csrf_token %}
-    {{ form }}
+    {% bootstrap_form form %}
     <input class="btn btn-primary" type="submit" value="Обновить">
 </form>
 <a href="{% url 'books_list' %}"><i>Вернуться к списку книг</i></a>

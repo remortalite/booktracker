@@ -1,0 +1,26 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Django Run",
+			"type": "process",
+			"detail": "Run django in uv using runserver",
+			"command": "uv",
+			"args": [
+				"run",
+				"python",
+				"manage.py",
+				"runserver"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"isBackground": true,
+		}
+	]
+}

@@ -1,5 +1,7 @@
 *.sqlite3
-.vscode/
+.vscode/**/*
+!.vscode/launch.json
+!.vscode/tasks.json
 
 # Python-generated files
 __pycache__/

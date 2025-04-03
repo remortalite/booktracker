@@ -10,7 +10,8 @@ class Shelf(models.Model):
                              on_delete=models.PROTECT)
     books = models.ManyToManyField(Book,
                                    related_name='shelves',
-                                   verbose_name='Книги')
+                                   verbose_name='Книги',
+                                   blank=True)
 
     class Meta:
         verbose_name = 'Полка'
